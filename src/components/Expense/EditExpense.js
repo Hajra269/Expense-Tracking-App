@@ -1,10 +1,8 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { TextField, Button, Container, Typography, Box } from '@mui/material';
-//import { useRouter } from 'next/navigation';
 
 const EditExpense = ({ index ,onSuccess}) => {
-  //const router = useRouter();
 
   const [expense, setExpense] = useState({
     amount: '',
@@ -37,7 +35,6 @@ const EditExpense = ({ index ,onSuccess}) => {
     localStorage.setItem('expenses', JSON.stringify(updatedExpenses));
 
     alert('Expense updated successfully!');
-    //router.push('/'); // Go back to home after update
     if (onSuccess) onSuccess();
   };
 

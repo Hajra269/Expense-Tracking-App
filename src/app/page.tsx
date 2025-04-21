@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Box, Button } from '@mui/material';
 
+//lazy loading
 const AddExpense = dynamic(() => import('@/components/Expense/AddExpense'), { ssr: false });
 const ViewExpenses = dynamic(() => import('@/components/Expense/ViewExpenses'), { ssr: false });
 const EditExpense = dynamic(() => import('@/components/Expense/EditExpense'), { ssr: false });

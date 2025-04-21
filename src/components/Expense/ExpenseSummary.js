@@ -13,16 +13,6 @@ const ExpenseSummary = () => {
     setExpenses(data);
   }, []);
 
-//  const income = expenses
-//     .filter(exp => exp.category === 'Income')
-//     .reduce((acc, curr) => acc + parseFloat(curr.amount), 0);
-
-//  const totalExpenses = expenses
-//     .filter(exp => exp.category !== 'Income')
-//     .reduce((acc, curr) => acc + parseFloat(curr.amount), 0);
-
-//   const netBalance = income - totalExpenses;
-
   const categoryTotals = expenses.reduce((acc, exp) => {
     if (exp.category !== 'Income') {
       acc[exp.category] = (acc[exp.category] || 0) + parseFloat(exp.amount);

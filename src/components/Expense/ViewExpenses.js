@@ -23,19 +23,15 @@ const ViewExpenses = ({ onEdit }) => {
 
   useEffect(() => {
     let result = [...expenses];
-
-    // Filter by category
     if (categoryFilter) {
       result = result.filter(exp => exp.category === categoryFilter);
     }
 
-    // Filter by date range
     if (dateRange.from && dateRange.to) {
       result = result.filter(exp => exp.date >= dateRange.from && exp.date <= dateRange.to);
     }
 
-    // Sort
-    if (sortField) {
+    if (sortField) { //sorting functionality
       result.sort((a, b) => {
         const valueA = sortField === 'amount' ? Number(a[sortField]) : new Date(a[sortField]);
         const valueB = sortField === 'amount' ? Number(b[sortField]) : new Date(b[sortField]);
@@ -43,7 +39,7 @@ const ViewExpenses = ({ onEdit }) => {
       });
     }
 
-    setFiltered(result);
+    setFiltered(result);  //filter functionality
   }, [categoryFilter, dateRange, sortField, sortOrder, expenses]);
 
   const handleDelete = (indexToDelete) => {
@@ -61,7 +57,7 @@ const ViewExpenses = ({ onEdit }) => {
     <Container maxWidth="md" sx={{ mt: 4 }}>
       <Typography variant="h4" gutterBottom>View Expenses</Typography>
 
-      <Box sx={{ display: 'flex', gap: 2, mb: 2, flexWrap: 'wrap' }}>
+      <Box sx={{ display: 'flex', gap: 2, mb: 2, flexWrap: 'wrap',overflow:"hidden"}}>
         <FormControl sx={{ minWidth: 150 }}>
           <InputLabel>Category</InputLabel>
           <Select
@@ -133,14 +129,14 @@ const ViewExpenses = ({ onEdit }) => {
               <TableCell><strong>Amount</strong></TableCell>
               <TableCell><strong>Category</strong></TableCell>
               <TableCell><strong>Date</strong></TableCell>
-              <TableCell><strong>Description</strong></TableCell>
+              <TableCell style={{display:"flex",flexDirection:"row",justifyContent:"end"}}><strong>Description</strong></TableCell>
               <TableCell align="center"><strong>Actions</strong></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {filtered.map((exp, index) => (
               <TableRow key={index}>
-                <TableCell>{exp.amount}</TableCell>
+                <TableCell>{exp.amount}{","}</TableCell>
                 <TableCell>{exp.category}</TableCell>
                 <TableCell>{exp.date}</TableCell>
                 <TableCell>{exp.description}</TableCell>
