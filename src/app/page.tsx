@@ -6,9 +6,10 @@ import { Box, Button } from '@mui/material';
 const AddExpense = dynamic(() => import('@/components/Expense/AddExpense'), { ssr: false });
 const ViewExpenses = dynamic(() => import('@/components/Expense/ViewExpenses'), { ssr: false });
 const EditExpense = dynamic(() => import('@/components/Expense/EditExpense'), { ssr: false });
+const ExpenseSummary = dynamic(() => import('@/components/Expense/ExpenseSummary'), { ssr: false });
 
 export default function Home() {
-  const [view, setView] = useState<'add' | 'view' | 'edit' | 'home'>('home');
+  const [view, setView] = useState<'add' | 'view' | 'summary'| 'edit' | 'home'>('home');
   const [editIndex, setEditIndex] = useState<number | null>(null);
 
   const handleEdit = (index: number) => {
@@ -25,6 +26,8 @@ export default function Home() {
         return <AddExpense onSuccess={handleAddSuccess} />;
         case 'view':
         return <ViewExpenses onEdit={handleEdit}/>;
+        case 'summary':
+        return <ExpenseSummary/>;
         case 'edit':
           return editIndex !== null ? <EditExpense index={editIndex} onSuccess={handleAddSuccess}  /> : null;
       default:
@@ -42,9 +45,7 @@ export default function Home() {
       <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', mb: 4 }}>
         <Button variant="contained" onClick={() => setView('add')}>Add Expense</Button>
         <Button variant="contained" onClick={() => setView('view')}>View Expenses</Button>
-        <Button variant="contained" 
-        //onClick={() => setView('summary')}
-          >Expense Summary</Button>
+        <Button variant="contained" onClick={() => setView('summary')}>Expense Summary</Button>
       </Box>
       {renderComponent()}
     </Box>

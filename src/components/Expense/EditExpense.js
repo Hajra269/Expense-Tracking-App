@@ -16,7 +16,7 @@ const EditExpense = ({ index ,onSuccess}) => {
   useEffect(() => {
     const storedExpenses = JSON.parse(localStorage.getItem('expenses')) || [];
     if (storedExpenses[index]) {
-      setExpense(storedExpenses[index]); // Pre-fill form with existing data
+      setExpense(storedExpenses[index]);
     }
   }, [index]);
 

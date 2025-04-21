@@ -66,7 +66,7 @@ const AddExpense = ({ onSuccess }) => {
             label="Amount"
             name="amount"
             type="number"
-            inputProps={{ min: 1 }}
+            inputProps={{ min: 1, step: "0.01" }}
             value={amount}
             onChange={onChangeInput}
             margin="normal"
